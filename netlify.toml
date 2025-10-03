@@ -1,0 +1,8 @@
+# netlify.toml untuk situs statis sederhana tanpa proses build
+
+[build]
+  # Memberitahu Netlify untuk mempublikasikan direktori root (.) proyek Anda.
+  publish = "."
+
+# Anda bisa menghapus atau mengosongkan 'command' karena tidak ada yang perlu di-build.
+# Netlify cukup pintar untuk mengetahui ini jika 'command' tidak ada.
