@@ -1,0 +1,18 @@
+# Konfigurasi Build & Deploy
+[build]
+  # Direktori yang akan dipublikasikan. Titik (.) berarti direktori root.
+  publish = "."
+  # Lokasi fungsi serverless Anda.
+  functions = "netlify/functions"
+
+# Pengaturan header kustom untuk memperbaiki masalah MIME type
+# Ini memberitahu browser cara menangani file .ts dan .tsx dengan benar.
+[[headers]]
+  for = "/*.ts"
+  [headers.values]
+    Content-Type = "text/babel; charset=UTF-8"
+
+[[headers]]
+  for = "/*.tsx"
+  [headers.values]
+    Content-Type = "text/babel; charset=UTF-8"
