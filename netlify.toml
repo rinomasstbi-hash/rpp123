@@ -1,3 +1,18 @@
-[functions]
-  directory = "netlify/functions"
-  node_bundler = "esbuild"
+# netlify.toml untuk proyek yang menghasilkan folder 'dist'
+
+[build]
+  # Perintah untuk membangun (build) proyek Anda.
+  # "npm run build" adalah perintah yang paling umum untuk membuat folder 'dist'.
+  # Pastikan perintah ini ada di file package.json Anda.
+  command = "npm run build"
+  
+  # Direktori yang akan dipublikasikan.
+  # Ini adalah folder hasil dari proses 'command'.
+  publish = "dist"
+
+# Bagian ini PENTING jika proyek Anda adalah Single Page Application (SPA)
+# seperti Vue atau React, untuk memastikan routing di sisi klien berfungsi.
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
