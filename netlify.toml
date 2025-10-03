@@ -1,20 +1,8 @@
-# netlify.toml untuk Proyek React / Single Page Application
+# netlify.toml untuk situs statis sederhana tanpa proses build
 
 [build]
-  # Perintah untuk membangun (build) proyek Anda.
-  # "npm run build" adalah yang paling umum.
-  command = "npm run build"
-  
-  # Direktori tempat hasil build disimpan.
-  # - Gunakan "build" jika Anda memakai Create React App.
-  # - Gunakan "dist" jika Anda memakai Vite.
-  # Silakan periksa nama folder di proyek Anda.
-  publish = "build"
+  # Memberitahu Netlify untuk mempublikasikan direktori root (.) proyek Anda.
+  publish = "."
 
-# Bagian ini SANGAT PENTING untuk aplikasi React/Vue/Angular
-# Ini memastikan jika pengguna me-refresh halaman atau membuka URL selain homepage,
-# situs Anda tidak akan menampilkan error 404.
-[[redirects]]
-  from = "/*"
-  to = "/index.html"
-  status = 200
+# Anda bisa menghapus atau mengosongkan 'command' karena tidak ada yang perlu di-build.
+# Netlify cukup pintar untuk mengetahui ini jika 'command' tidak ada.
