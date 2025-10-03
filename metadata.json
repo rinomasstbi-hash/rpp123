@@ -1,0 +1,5 @@
+{
+  "name": "Copy of RPM KBC MTsN 4 Jombang",
+  "description": "An application to generate Detailed Learning Plans (RPM) for all subjects at MTsN 4 Jombang, integrating the 'Kurikulum Berbasis Cinta' (KBC) values.",
+  "requestFramePermissions": []
+}
