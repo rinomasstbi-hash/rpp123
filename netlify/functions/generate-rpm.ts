@@ -34,11 +34,6 @@ interface RPMInput {
   graduateDimensions: GraduateDimension[];
 }
 
-
-// Inisialisasi Gemini AI di sini, di sisi server
-// Pastikan Anda telah mengatur API_KEY di environment variables Netlify
-const ai = new GoogleGenAI({ apiKey: process.env.API_KEY as string });
-
 function createPrompt(data: RPMInput): string {
   const {
     teacherName,
@@ -153,6 +148,12 @@ const handler: Handler = async (event: HandlerEvent, context: HandlerContext) =>
   }
 
   try {
+    if (!process.env.API_KEY) {
+      throw new Error("Konfigurasi sisi server tidak lengkap: API_KEY untuk layanan AI tidak ditemukan.");
+    }
+    
+    const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
+
     const data = JSON.parse(event.body || '{}') as RPMInput;
     const model = 'gemini-2.5-flash';
     const prompt = createPrompt(data);
@@ -174,9 +175,13 @@ const handler: Handler = async (event: HandlerEvent, context: HandlerContext) =>
     };
   } catch (error) {
     console.error("Error in Netlify Function:", error);
+    const errorMessage = error instanceof Error ? error.message : "An unknown server error occurred.";
     return {
       statusCode: 500,
-      body: JSON.stringify({ error: "Failed to generate RPM from AI service." }),
+      body: JSON.stringify({ 
+        error: "Terjadi kesalahan pada server saat menghasilkan RPM.",
+        details: errorMessage 
+      }),
     };
   }
 };
