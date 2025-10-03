@@ -4,11 +4,11 @@
   # Perintah untuk membangun (build) proyek Anda.
   # "npm run build" adalah perintah yang paling umum untuk membuat folder 'dist'.
   # Pastikan perintah ini ada di file package.json Anda.
-  command = "npm run build"
+  command = ""
   
   # Direktori yang akan dipublikasikan.
   # Ini adalah folder hasil dari proses 'command'.
-  publish = "dist"
+  publish = "."
 
 # Bagian ini PENTING jika proyek Anda adalah Single Page Application (SPA)
 # seperti Vue atau React, untuk memastikan routing di sisi klien berfungsi.
@@ -16,3 +16,4 @@
   from = "/*"
   to = "/index.html"
   status = 200
+
