@@ -1,12 +1,12 @@
 
 import React, { useState, useCallback } from 'react';
+import { Header } from './components/Header.tsx';
+import { Footer } from './components/Footer.tsx';
 import { RPMForm } from './components/RPMForm.tsx';
 import { RPMOutput } from './components/RPMOutput.tsx';
 import { Spinner } from './components/Spinner.tsx';
-import { Header } from './components/Header.tsx';
-import { Footer } from './components/Footer.tsx';
-import type { RPMInput } from './types.ts';
 import { generateRPM } from './services/geminiService.ts';
+import type { RPMInput } from './types.ts';
 
 const App: React.FC = () => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
@@ -22,7 +22,11 @@ const App: React.FC = () => {
       setGeneratedRpm(result);
     } catch (e) {
       console.error(e);
-      setError('Gagal menghasilkan RPM. Silakan coba lagi.');
+      if (e instanceof Error) {
+        setError(`Gagal menghasilkan RPM. ${e.message}`);
+      } else {
+        setError('Gagal menghasilkan RPM. Terjadi kesalahan yang tidak diketahui.');
+      }
     } finally {
       setIsLoading(false);
     }
@@ -41,7 +45,7 @@ const App: React.FC = () => {
           <div className="bg-white p-6 rounded-lg shadow-md border border-gray-200">
              <h2 className="text-2xl font-bold text-teal-700 mb-4">Hasil Rencana Pembelajaran (RPM)</h2>
             {isLoading && <Spinner />}
-            {error && <div className="text-red-500 bg-red-100 p-4 rounded-md">{error}</div>}
+            {error && <div className="text-red-500 bg-red-100 p-4 rounded-md whitespace-pre-wrap">{error}</div>}
             {!isLoading && !generatedRpm && !error && (
                 <div className="flex flex-col items-center justify-center h-full text-center text-gray-500">
                     <svg xmlns="http://www.w3.org/2000/svg" className="h-16 w-16 mb-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">

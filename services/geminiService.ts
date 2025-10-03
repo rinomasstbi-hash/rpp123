@@ -1,8 +1,6 @@
 import type { RPMInput } from '../types.ts';
 
 export const generateRPM = async (data: RPMInput): Promise<string> => {
-  try {
-    // Panggil endpoint Netlify Function yang akan kita buat
     const response = await fetch('/.netlify/functions/generate-rpm', {
       method: 'POST',
       headers: {
@@ -12,18 +10,18 @@ export const generateRPM = async (data: RPMInput): Promise<string> => {
     });
 
     if (!response.ok) {
-      const errorData = await response.json();
-      throw new Error(errorData.error || 'Gagal menghasilkan RPM dari server.');
+      let errorBody;
+      try {
+        errorBody = await response.json();
+        const errorMessage = errorBody.error || 'Terjadi kesalahan pada server.';
+        const errorDetails = errorBody.details ? ` Detail teknis: ${errorBody.details}` : '';
+        throw new Error(`${errorMessage}${errorDetails}`);
+      } catch (e) {
+        // If parsing JSON fails, it's likely a gateway error or non-JSON response
+        throw new Error(`Server mengalami masalah (Status: ${response.status} ${response.statusText}). Silakan coba lagi nanti.`);
+      }
     }
 
     const result = await response.json();
     return result.rpm;
-    
-  } catch (error) {
-    console.error("Error calling Netlify Function:", error);
-    if (error instanceof Error) {
-        throw new Error(error.message);
-    }
-    throw new Error("Gagal terhubung ke layanan AI.");
-  }
 };
