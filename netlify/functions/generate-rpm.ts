@@ -119,21 +119,12 @@ function createPrompt(data: RPMInput): string {
         - Kolom kiri: \`<td style="width: 50%; vertical-align: top; border: none;">Mengetahui,<br/>Kepala MTsN 4 Jombang<br/><br/><br/><br/><b>Sulthon Sulaiman, M.Pd.I.</b><br/>NIP. 19810616 2005011003</td>\`
         - Kolom kanan: \`<td style="width: 50%; vertical-align: top; border: none;">Jombang, [Generate tanggal hari ini format DD MMMM YYYY]<br/>Guru Mata Pelajaran<br/><br/><br/><br/><b>${teacherName}</b><br/>NIP. ${teacherNip}</td>\`
 
-    3.  **LAMPIRAN:** Gunakan \`<div style="page-break-before: always;">\` untuk memulai di halaman baru.
+    3.  **LAMPIRAN (Disederhanakan untuk Performa):** Gunakan \`<div style="page-break-before: always;">\` untuk memulai di halaman baru.
         - \`<h2>Lampiran</h2>\`
-        - **Lampiran 1: Lembar Kerja Peserta Didik (LKPD)** (Buat LKPD yang LENGKAP)
-          - \`<h3>A. Identitas</h3>\` (Nama, Kelas, No. Absen, dll.)
-          - \`<h3>B. Petunjuk Penggunaan</h3>\`
-          - \`<h3>C. Kegiatan Pembelajaran</h3>\` (Integrasikan sintaks dan pengalaman belajar tanpa tabel)
-            - \`<h4>1. Memahami</h4>\` (Sajikan materi singkat + 3 pertanyaan pemahaman)
-            - \`<h4>2. Mengaplikasikan</h4>\` (1 tugas studi kasus nyata + instruksi)
-            - \`<h4>3. Merefleksikan</h4>\` (2-3 pertanyaan refleksi)
-          - \`<h3>D. Penutup</h3>\` (Kata penyemangat + checklist pemahaman diri)
-        - **Lampiran 2: Instrumen Asesmen**
-          - \`<h4>Asesmen Awal</h4>\` (Buat 5 soal [pilih tipe soal yang sesuai] beserta kunci jawabannya)
-          - \`<h4>Rubrik Penilaian Sikap</h4>\` (Buat tabel HTML 4x5 untuk menilai sikap)
-          - \`<h4>Rubrik Penilaian Pengetahuan</h4>\` (Buat tabel HTML 4x5 untuk menilai pengetahuan)
-          - \`<h4>Rubrik Penilaian Keterampilan</h4>\` (Buat tabel HTML 4x5 untuk menilai keterampilan)
+        - \`<h3>Lampiran 1: Lembar Kerja Peserta Didik (LKPD)</h3>\`
+        - \`<p><i>[Guru dapat mengembangkan LKPD di sini sesuai dengan kegiatan pada bagian PENGALAMAN BELAJAR. LKPD harus mencakup kegiatan untuk memahami, mengaplikasikan, dan merefleksikan materi.]</i></p><br/>\`
+        - \`<h3>Lampiran 2: Instrumen Asesmen</h3>\`
+        - \`<p><i>[Guru dapat mengembangkan instrumen asesmen di sini, termasuk soal untuk asesmen awal, serta rubrik penilaian untuk asesmen formatif (sikap) dan sumatif (pengetahuan dan keterampilan).]</i></p>\`
 
     Pastikan seluruh output adalah satu blok kode HTML yang valid dan rapi.
     `;
